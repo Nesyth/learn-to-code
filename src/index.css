@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e2f4fc)) fixed;
 }
 
 code {
@@ -24,11 +25,20 @@ code {
   flex-direction: column;
 }
 
-h2 {
-  font-size: 24px;
+.Component {
+  margin: 12px;
 }
 
-input {
+h1 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+.form input {
   padding: 12px;
   margin: 12px;
   font-size: 14px;
@@ -36,7 +46,11 @@ input {
   box-shadow: 0 1px 4px #ccc;
   border-radius: 6px;
   font-size: 18px;
-  width: 95%;
+  width: 100%;
+}
+
+button[type="submit"] {
+  background-color: #2695b5;
 }
 
 button {
@@ -54,7 +68,7 @@ button {
 .container {
   box-shadow: 0 1px 6px #ccc;
   background-color: white;
-  border-radius: 6px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,7 +86,7 @@ button {
   width: 100%;
 }
 
-.form > h2 {
+.form > h1 {
   text-align: center;
 }
 

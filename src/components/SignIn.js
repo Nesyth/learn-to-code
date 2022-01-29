@@ -23,7 +23,7 @@ const Signin = () => {
 
   return (
     <div className="form">
-      <h2>Login</h2>
+      <h1>Login</h1>
       <form>
         <input placeholder="Email" type="email" ref={emailRef} />
         <input placeholder="Password" type="password" ref={psdRef} />

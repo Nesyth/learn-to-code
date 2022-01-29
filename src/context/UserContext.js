@@ -11,11 +11,21 @@ import {
   signInWithPopup
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.js";
+import { setDoc, doc } from "firebase/firestore"; 
+import { db } from "../firebase/firebase.js";
 
 export const UserContext = createContext({});
 
 export const useUserContext = () => {
   return useContext(UserContext);
+};
+
+export const createInitialDoc = (auth) => {
+  setDoc(doc(db, "exercises", auth.currentUser.uid), {
+    "e1": "false",
+    "e2": "false",
+    "e3": "false"
+  });
 };
 
 export const UserContextProvider = ({ children }) => {
@@ -47,6 +57,9 @@ export const UserContextProvider = ({ children }) => {
       )
       .then((res) => console.log(res))
       .catch((err) => setError(err.message))
+      .then(() =>
+        createInitialDoc(auth))
+      .then((err) => setError(err.message))
       .finally(() => setLoading(false));
   };
 
@@ -64,6 +77,9 @@ export const UserContextProvider = ({ children }) => {
     signInWithPopup(auth, provider)
       .then((res) => console.log(res))
       .catch((err) => setError(err.code))
+      .then(() =>
+        createInitialDoc(auth))
+      .then((err) => setError(err.message))
       .finally(() => setLoading(false)); 
   }
 
@@ -73,11 +89,15 @@ export const UserContextProvider = ({ children }) => {
     signInWithPopup(auth, provider)
       .then((res) => console.log(res))
       .catch((err) => setError(err.code))
+      .then(() =>
+        createInitialDoc(auth))
+      .then((err) => setError(err.message))
       .finally(() => setLoading(false)); 
   }
 
   const logoutUser = () => {
     signOut(auth);
+    this.forceUpdate();
   };
 
   const forgotPassword = (email) => {

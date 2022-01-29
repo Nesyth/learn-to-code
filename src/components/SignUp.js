@@ -17,7 +17,7 @@ const Signup = () => {
 
   return (
     <div className="form">
-      <h2>New User</h2>
+      <h1>New User</h1>
       <form>
         <input placeholder="Email" type="email" ref={emailRef} />
         <input placeholder="Name" type="name" ref={nameRef} />
