@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom';
 import { auth } from "../../firebase/firebase.js";
 import { updateDoc, doc } from "firebase/firestore"; 
 import { db } from "../../firebase/firebase.js";
+import Comments from './comments/Comments.js';
 
 const codeExample = 
 `// sample use - do not modify
@@ -87,32 +88,38 @@ const Exercise1 = () => {
     }
 
     return (
-        <div className="grid grid-cols-2">
-            <div>
-                <Editor
-                    value={code}
-                    onValueChange={code => setCode(code)}
-                    highlight={code => highlight(code, languages.js)}
-                    padding={10}
-                    style={{
-                        fontFamily: '"Fira code", "Fira Mono", monospace',
-                        fontSize: 18,
-                        minHeight: '100vh',
-                    }}
-                />
+        <div className="h-full">
+            <div className="grid grid-cols-2 h-1/2">
+                <div>
+                    <Editor
+                        value={code}
+                        onValueChange={code => setCode(code)}
+                        highlight={code => highlight(code, languages.js)}
+                        padding={10}
+                        style={{
+                            fontFamily: '"Fira code", "Fira Mono", monospace',
+                            fontSize: 18,
+                            minHeight: '100vh',
+                        }}
+                    />
+                </div>
+                <div className="m-4">
+                    <h1 className="text-center">Instructions</h1>
+                    <h2>Complete the <b>function sum(a, b)</b> such that it returns the sum of <b>a</b> and <b>b</b>.</h2>
+                    <h1 className="text-center mt-16">Tests</h1>
+                    <h2 className="flex items-center">1: function sum(a, b) works for negative numbers {t1 == null ? null : <>{t1 ? <FiCheck/> : <FiX/>}</>}</h2>
+                    <h2 className="flex items-center">2: function sum(a, b) adds two variables {t1 == null ? null : <>{t1 ? <FiCheck/> : <FiX/>}</>}</h2>
+                    <h1 className="text-center mt-16">Response</h1>
+                    <h2>{response ? response : "Empty"}</h2>
+                    <button className="mt-16" type="submit" onClick={onSubmit}>Submit</button>
+                    {!t1 ? null : <NavLink to="../2"><button type="submit">Next exercise!</button></NavLink>}
+                </div>
             </div>
-            <div className="m-4">
-                <h1 className="text-center">Instructions</h1>
-                <h2>Complete the <b>function sum(a, b)</b> such that it returns the sum of <b>a</b> and <b>b</b>.</h2>
-                <h1 className="text-center mt-16">Tests</h1>
-                <h2 className="flex items-center">1: function sum(a, b) works for negative numbers {t1 == null ? null : <>{t1 ? <FiCheck/> : <FiX/>}</>}</h2>
-                <h2 className="flex items-center">2: function sum(a, b) adds two variables {t1 == null ? null : <>{t1 ? <FiCheck/> : <FiX/>}</>}</h2>
-                <h1 className="text-center mt-16">Response</h1>
-                <h2>{response ? response : "Empty"}</h2>
-                <button className="mt-16" type="submit" onClick={onSubmit}>Submit</button>
-                {!t1 ? null : <NavLink to="../2"><button type="submit">Next exercise!</button></NavLink>}
+            <div>
+                <Comments/>
             </div>
         </div>
+
     )
 }
 

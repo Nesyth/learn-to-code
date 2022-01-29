@@ -21,7 +21,7 @@ export const useUserContext = () => {
 };
 
 export const createInitialDoc = (auth) => {
-  setDoc(doc(db, "exercises", auth.currentUser.uid), {
+  setDoc(doc(db, "users", auth.currentUser.uid), {
     "e1": "false",
     "e2": "false",
     "e3": "false"

@@ -29,7 +29,7 @@ const Exercise2 = () => {
 
     useEffect(() => {
         if (t1 == true) {
-            updateDoc(doc(db, "exercises", auth.currentUser.uid), {
+            updateDoc(doc(db, "users", auth.currentUser.uid), {
                 "e2": "true"
             });
         }

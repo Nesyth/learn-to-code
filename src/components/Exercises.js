@@ -8,7 +8,7 @@ const Exercises = () => {
     const [data, setData] = useState('');
 
     useEffect(() => {
-        const unsub = onSnapshot(doc(db, "exercises", auth.currentUser.uid), (doc) => {
+        const unsub = onSnapshot(doc(db, "users", auth.currentUser.uid), (doc) => {
             setData(doc.data());
         });     
     }, []);
