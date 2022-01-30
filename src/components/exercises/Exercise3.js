@@ -44,7 +44,7 @@ const Exercise2 = () => {
         const codeT1 = "console.log(findFirstNotRepeatedChar('aabbccddeeffgg9j'));"
         const getFetch = async () => {
             try {
-                const res = await fetch(`https://invertible-tree-333516.com/api/${codePre}${codeClean}${codeT1}`, {
+                const res = await fetch(`https://invertibletree333516.com/api/${codePre}${codeClean}${codeT1}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "text/plain"
@@ -73,7 +73,7 @@ const Exercise2 = () => {
 
         const getFetch = async () => {
             try {
-                const res = await fetch(`https://invertible-tree-333516.com/api/${codePre}${codeClean}${codeAfter}`, {
+                const res = await fetch(`https://invertibletree333516.com/api/${codePre}${codeClean}${codeAfter}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "text/plain"

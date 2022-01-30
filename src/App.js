@@ -3,12 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import React from "react";
 import Auth from "./components/Auth.js";
 import Dashboard from "./components/Dashboard.js";
-import Exercises from "./components/Exercises.js";
+import Exercises from "./components/exercises/Exercises.js";
 import Navbar from "./components/Navbar.js";
 import Welcome from "./components/Welcome.js";
-import Exercise1 from "./components/exercises/Exercise1.js";
-import Exercise2 from "./components/exercises/Exercise2.js";
-import Exercise3 from "./components/exercises/Exercise3.js";
+import Create from "./components/exercises/Create.js";
+import Exercise from "./components/exercises/Exercise.js";
 
 export default function App() {
   const { user, loading, error } = useUserContext();
@@ -23,9 +22,8 @@ export default function App() {
             <Route path="dashboard" index element={<Dashboard />} />
             <Route path="exercises">
               <Route index={true} element={<Exercises />} />
-              <Route path="1" element={<Exercise1 />} />
-              <Route path="2" element={<Exercise2 />} />
-              <Route path="3" element={<Exercise3 />} />
+              <Route path="create" element={<Create />} />
+              <Route path=":id" element={<Exercise />} />
             </Route>
           </Routes>
         </>

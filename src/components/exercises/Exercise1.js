@@ -44,7 +44,7 @@ const Exercise1 = () => {
         const codeT1 = "console.log(sum(4, -10));"
         const getFetch = async () => {
             try {
-                const res = await fetch(`https://34.134.107.102/api/${codePre}${codeClean}${codeT1}`, {
+                const res = await fetch(`https://invertibletree333516.com/api/${codePre}${codeClean}${codeT1}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "text/plain"
@@ -71,7 +71,7 @@ const Exercise1 = () => {
 
         const getFetch = async () => {
             try {
-                const res = await fetch(`https://34.134.107.102/api/${codePre}${codeClean}${codeAfter}`, {
+                const res = await fetch(`https://invertibletree333516.com/api/${codePre}${codeClean}${codeAfter}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "text/plain"

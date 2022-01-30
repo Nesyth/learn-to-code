@@ -77,6 +77,19 @@ button {
   padding: 22px;
 }
 
+.containerBig {
+  box-shadow: 0 1px 6px #ccc;
+  background-color: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80vw;
+  padding: 22px;
+}
+
+
 .container > p {
   cursor: pointer;
   margin: 12px;
