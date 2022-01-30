@@ -4,15 +4,21 @@ import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css';
 import Editor from 'react-simple-code-editor';
+import { useEffect } from "react/cjs/react.development";
 
-const Placeholder = ({ id, codeExample }) => {
-    const [code, setCode] = useState(codeExample);
+const Placeholder = ({ codeParent, onValueChange }) => {
+    const [code, setCode] = useState(codeParent);
+
+    const transferCode = (code) => {
+        onValueChange(code);
+        setCode(code);
+    }
 
     return (
         <Editor
             value={code}
-            onValueChange={code => setCode(code)}
-            highlight={code => highlight(code, languages.js)}
+            onValueChange={code => transferCode(code)}
+            highlight={codeParent => highlight(codeParent, languages.js)}
             padding={10}
             style={{
                 fontFamily: '"Fira code", "Fira Mono", monospace',

@@ -66,13 +66,13 @@ const Create = () => {
             <div className="containerBig">
                 <h1>Create new exercise</h1>
                 <div className="flex justify-center">
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={onSubmit} className="width-300">
                         <p>ID:</p>
                         <input value={name} onChange={onNameChange} required/>
                         <p>Description:</p>
-                        <input value={placeholder} onChange={onPlaceholderChange} required/>
-                        <p>Placeholder:</p>
                         <input value={description} onChange={onDescriptionChange} required/>
+                        <p>Placeholder:</p>
+                        <textarea value={placeholder} onChange={onPlaceholderChange} required/>
                         <p>Instructions:</p>
                         <input value={instructions} onChange={onInstructionsChange} required/>
                         <p>Tests description:</p>
