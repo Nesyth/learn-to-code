@@ -7,6 +7,8 @@ import { updateDoc, doc, getDoc } from "firebase/firestore";
 import { useLocation } from 'react-router-dom';
 import Comments from './comments/Comments.js';
 import Placeholder from './Placeholder.js';
+import Tests from './tests/Tests.js';
+import Instructions from './Instructions.js';
 
 const Exercise = () => {
     const [loading, setLoading] = useState(true);
@@ -22,7 +24,6 @@ const Exercise = () => {
         const docRef = doc(db, "exercises", getCurrentPath());
         const docSnap = await getDoc(docRef);
         setData(docSnap.data());
-
     }, []);
 
     useEffect(() => {
@@ -58,11 +59,9 @@ const Exercise = () => {
                         </div>
                         <div className="m-4">
                             <h1 className="text-center">Instructions</h1>
-                            <h2>{data.instructions}</h2>
+                                <Instructions textParent={data.instructions}/>
                             <h1 className="text-center mt-16">Tests</h1>
-                            <ol>
-                                {data.testsDescription}
-                            </ol>
+                                <Tests/>
                             <h1 className="text-center mt-16">Response</h1>
                             <h2>{response ? response : "Empty"}</h2>
                             <button className="mt-16" type="submit" onClick={onSubmit}>Submit</button>
