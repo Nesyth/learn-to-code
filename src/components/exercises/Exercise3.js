@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom';
 import { auth } from "../../firebase/firebase.js";
 import { updateDoc, doc } from "firebase/firestore"; 
 import { db } from "../../firebase/firebase.js";
+import Comments from './comments/Comments.js';
 
 const codeExample = 
 `// sample use - do not modify
@@ -98,30 +99,35 @@ const Exercise2 = () => {
     }
 
     return (
-        <div className="grid grid-cols-2">
-            <div>
-                <Editor
-                    value={code}
-                    onValueChange={code => setCode(code)}
-                    highlight={code => highlight(code, languages.js)}
-                    padding={10}
-                    style={{
-                        fontFamily: '"Fira code", "Fira Mono", monospace',
-                        fontSize: 18,
-                        minHeight: '100vh',
-                    }}
-                />
+        <div className="h-full">
+            <div className="grid grid-cols-2">
+                <div>
+                    <Editor
+                        value={code}
+                        onValueChange={code => setCode(code)}
+                        highlight={code => highlight(code, languages.js)}
+                        padding={10}
+                        style={{
+                            fontFamily: '"Fira code", "Fira Mono", monospace',
+                            fontSize: 18,
+                            minHeight: '100vh',
+                        }}
+                    />
+                </div>
+                <div className="m-4">
+                    <h1 className="text-center">Instructions</h1>
+                    <h2>Write a function called <b>findFirstNotRepeatedChar</b> that takes a string as a parameter and returns the first non-repeating element (letter or number) as the result of the function.</h2>
+                    <h1 className="text-center mt-16">Tests</h1>
+                    <h2 className="flex items-center">1: function findFirstNotRepeatedChar(str) works for numbers {t1 == null ? null : <>{t1 ? <FiCheck/> : <FiX/>}</>}</h2>
+                    <h2 className="flex items-center">2: function findFirstNotRepeatedChar(str) works for given string {t2 == null ? null : <>{t2 ? <FiCheck/> : <FiX/>}</>}</h2>
+                    <h1 className="text-center mt-16">Response</h1>
+                    <h2>{response ? response : "Empty"}</h2>
+                    <button className="mt-16" type="submit" onClick={onSubmit}>Submit</button>
+                    {!t1 ? null : <NavLink to="../3"><button type="submit">Next exercise!</button></NavLink>}
+                </div>
             </div>
-            <div className="m-4">
-                <h1 className="text-center">Instructions</h1>
-                <h2>Write a function called <b>findFirstNotRepeatedChar</b> that takes a string as a parameter and returns the first non-repeating element (letter or number) as the result of the function.</h2>
-                <h1 className="text-center mt-16">Tests</h1>
-                <h2 className="flex items-center">1: function findFirstNotRepeatedChar(str) works for numbers {t1 == null ? null : <>{t1 ? <FiCheck/> : <FiX/>}</>}</h2>
-                <h2 className="flex items-center">2: function findFirstNotRepeatedChar(str) works for given string {t2 == null ? null : <>{t2 ? <FiCheck/> : <FiX/>}</>}</h2>
-                <h1 className="text-center mt-16">Response</h1>
-                <h2>{response ? response : "Empty"}</h2>
-                <button className="mt-16" type="submit" onClick={onSubmit}>Submit</button>
-                {!t1 ? null : <NavLink to="../3"><button type="submit">Next exercise!</button></NavLink>}
+            <div>
+                <Comments/>
             </div>
         </div>
     )
