@@ -1,9 +1,8 @@
-import react, { useState } from "react";
+import react, { useState, useEffect } from "react";
 import { updateDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
 import { useLocation } from 'react-router-dom';
 import Moment from "react-moment";
-import { useEffect } from "react/cjs/react.development";
 
 const Comment = ({ uid, author, avatar, comment, likes, timestamp, onDelete }) => {
     const [likesUpdater, setLikesUpdater] = useState(likes);

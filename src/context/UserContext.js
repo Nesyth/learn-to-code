@@ -20,14 +20,6 @@ export const useUserContext = () => {
   return useContext(UserContext);
 };
 
-export const createInitialDoc = (auth) => {
-  setDoc(doc(db, "users", auth.currentUser.uid), {
-    "e1": "false",
-    "e2": "false",
-    "e3": "false"
-  });
-};
-
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -57,8 +49,6 @@ export const UserContextProvider = ({ children }) => {
       )
       .then((res) => console.log(res))
       .catch((err) => setError(err.message))
-      .then(() =>
-        createInitialDoc(auth))
       .then((err) => setError(err.message))
       .finally(() => setLoading(false));
   };
@@ -77,8 +67,6 @@ export const UserContextProvider = ({ children }) => {
     signInWithPopup(auth, provider)
       .then((res) => console.log(res))
       .catch((err) => setError(err.code))
-      .then(() =>
-        createInitialDoc(auth))
       .then((err) => setError(err.message))
       .finally(() => setLoading(false)); 
   }
@@ -89,8 +77,6 @@ export const UserContextProvider = ({ children }) => {
     signInWithPopup(auth, provider)
       .then((res) => console.log(res))
       .catch((err) => setError(err.code))
-      .then(() =>
-        createInitialDoc(auth))
       .then((err) => setError(err.message))
       .finally(() => setLoading(false)); 
   }

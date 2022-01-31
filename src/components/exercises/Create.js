@@ -1,7 +1,7 @@
 import react from "react";
 import { useState } from "react/cjs/react.development";
 import { auth, db } from "../../firebase/firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, collection } from "firebase/firestore";
 
 const Create = () => {
     const [name, setName] = useState('');
@@ -14,8 +14,8 @@ const Create = () => {
     const [testsExpected, setTestsExpected] = useState('');
 
     const createExercise = async () => {
-        const docRef = doc(db, "exercises", name);
-        await setDoc(doc(db, "exercises", name), {
+        const docRef = doc(collection(db, "exercises"));
+        await setDoc(doc(db, "exercises", docRef.id), {
             "uid": docRef.id,
             "name": name,
             "description": description,
@@ -33,6 +33,9 @@ const Create = () => {
     const onSubmit = (e) => {
         e.preventDefault(e);
         createExercise();
+        return (
+            <h1>Exercise created!</h1>
+        );
     };
 
     const onNameChange = (e) => {
@@ -73,7 +76,7 @@ const Create = () => {
                 <h1>Create new exercise</h1>
                 <div className="flex justify-center">
                     <form onSubmit={onSubmit} className="width-300">
-                        <p>ID:</p>
+                        <p>Name:</p>
                         <input value={name} onChange={onNameChange} required/>
                         <p>Description:</p>
                         <input value={description} onChange={onDescriptionChange} required/>

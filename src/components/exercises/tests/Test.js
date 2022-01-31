@@ -1,8 +1,8 @@
-import react, { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import react, { useState, useEffect } from "react";
 
 const Test = ({ description, pre, after, expected, code, onSubmit, testsPassed }) => {
     const [passed, setPassed] = useState(false);
+    const [response, setResponse] = useState('');
 
     useEffect(() => {
         if (onSubmit == true) {
@@ -21,6 +21,7 @@ const Test = ({ description, pre, after, expected, code, onSubmit, testsPassed }
                     },
                 });
                 const data = await res.json();
+                setResponse(data);
 
                 if (data == expected) {
                     setPassed(true);
@@ -39,6 +40,8 @@ const Test = ({ description, pre, after, expected, code, onSubmit, testsPassed }
             <p>Pre: {pre}</p>
             <p>After: {after}</p>
             <p>Expected: {expected}</p>
+            <br></br>
+            <p>Response: {response ? response : "Empty"}</p>
             <br></br>
             <p>Passed: {!passed ? "No" : "Yes!"}</p>
         </div>
