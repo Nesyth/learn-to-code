@@ -2,6 +2,7 @@ import react from "react";
 import { useState } from "react/cjs/react.development";
 import { auth, db } from "../../firebase/firebase";
 import { doc, setDoc, collection } from "firebase/firestore";
+import { useNavigate } from 'react-router-dom';
 
 const Create = () => {
     const [name, setName] = useState('');
@@ -12,6 +13,8 @@ const Create = () => {
     const [testsPre, setTestsPre] = useState('');
     const [testsAfter, setTestsAfter] = useState('');
     const [testsExpected, setTestsExpected] = useState('');
+
+    const navigate = useNavigate();
 
     const createExercise = async () => {
         const docRef = doc(collection(db, "exercises"));
@@ -28,14 +31,6 @@ const Create = () => {
             "testsAfter": testsAfter,
             "testsExpected": testsExpected
         });
-    };
-
-    const onSubmit = (e) => {
-        e.preventDefault(e);
-        createExercise();
-        return (
-            <h1>Exercise created!</h1>
-        );
     };
 
     const onNameChange = (e) => {
@@ -69,6 +64,12 @@ const Create = () => {
     const onTestsExpectedChange = (e) => {
         setTestsExpected(e.target.value);
     };
+
+    const onSubmit = (e) => {
+        e.preventDefault(e);
+        createExercise()
+            .then(() => navigate('../'));
+        };
 
     return (
         <div className="flex mt-10 justify-center">
