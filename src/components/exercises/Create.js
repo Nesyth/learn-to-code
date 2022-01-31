@@ -9,8 +9,9 @@ const Create = () => {
     const [description, setDescription] = useState('');
     const [instructions, setInstructions] = useState('');
     const [testsDescription, setTestsDescription] = useState('');
-    const [testsInput, setTestsInput] = useState('');
-    const [testsOutput, setTestsOutput] = useState('');
+    const [testsPre, setTestsPre] = useState('');
+    const [testsAfter, setTestsAfter] = useState('');
+    const [testsExpected, setTestsExpected] = useState('');
 
     const createExercise = async () => {
         const docRef = doc(db, "exercises", name);
@@ -23,8 +24,9 @@ const Create = () => {
             "placeholder": placeholder,
             "instructions": instructions,
             "testsDescription": testsDescription,
-            "testsInput": testsInput,
-            "testsOutput": testsOutput
+            "testsPre": testsPre,
+            "testsAfter": testsAfter,
+            "testsExpected": testsExpected
         });
     };
 
@@ -53,14 +55,18 @@ const Create = () => {
         setTestsDescription(e.target.value);
     };
 
-    const onTestsInputChange = (e) => {
-        setTestsInput(e.target.value);
+    const onTestsPreChange = (e) => {
+        setTestsPre(e.target.value);
     };
 
-    const onTestsOutputChange = (e) => {
-        setTestsOutput(e.target.value);
+    const onTestsAfterChange = (e) => {
+        setTestsAfter(e.target.value);
     };
     
+    const onTestsExpectedChange = (e) => {
+        setTestsExpected(e.target.value);
+    };
+
     return (
         <div className="flex justify-center mt-10">
             <div className="containerBig">
@@ -77,10 +83,12 @@ const Create = () => {
                         <input value={instructions} onChange={onInstructionsChange} required/>
                         <p>Tests description:</p>
                         <input value={testsDescription} onChange={onTestsDescriptionChange} required/>
-                        <p>Tests input:</p>
-                        <input value={testsInput} onChange={onTestsInputChange} required/>
+                        <p>Tests pre:</p>
+                        <input value={testsPre} onChange={onTestsPreChange} required/>
+                        <p>Tests after:</p>
+                        <input value={testsAfter} onChange={onTestsAfterChange} required/>
                         <p>Tests expected output:</p>
-                        <input value={testsOutput} onChange={onTestsOutputChange} required/>
+                        <input value={testsExpected} onChange={onTestsExpectedChange} required/>
                         <button type="submit">Submit</button>
                     </form>
                 </div>

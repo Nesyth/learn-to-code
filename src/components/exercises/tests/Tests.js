@@ -1,8 +1,20 @@
-import react from "react";
+import react, { useState } from "react";
+import { FiCodesandbox } from "react-icons/fi";
+import Test from "./Test";
 
-const Tests = () => {
+const Tests = ({ data, code, onSubmit, testsPassed }) => {
     return (
-        <h2>tests placeholder</h2>
+        <>
+            <Test 
+                description={data.description} 
+                pre={data.pre} 
+                after={data.after} 
+                expected={data.expected} 
+                code={code}
+                onSubmit={onSubmit}
+                testsPassed={() => testsPassed()}
+            />
+        </>
     );
 };
 

@@ -3,7 +3,7 @@ import { useUserContext } from '../../context/UserContext.js';
 import { FiX, FiCheck } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
 import { auth, db } from "../../firebase/firebase.js";
-import { updateDoc, doc, getDoc } from "firebase/firestore"; 
+import { updateDoc, doc, getDoc, setDoc } from "firebase/firestore"; 
 import { useLocation } from 'react-router-dom';
 import Comments from './comments/Comments.js';
 import Placeholder from './Placeholder.js';
@@ -12,12 +12,11 @@ import Instructions from './Instructions.js';
 
 const Exercise = () => {
     const [loading, setLoading] = useState(true);
-
     const [data, setData] = useState('');
-    const [response, setResponse] = useState();
     const [code, setCode] = useState(``);
-    
-    const [t1, setT1] = useState(null);
+    const [tests, setTests] = useState('');
+    const [clicked, setClicked] = useState(false);
+
     const location = useLocation();
 
     useEffect(async () => {
@@ -27,7 +26,20 @@ const Exercise = () => {
     }, []);
 
     useEffect(() => {
+        setTimeout(() => {
+            setClicked(false);   
+        }, 1000);
+    }, [clicked]);
+
+    useEffect(() => {
         if (data) {
+            const dataTests = {
+                description: data.testsDescription,
+                pre: data.testsPre,
+                after: data.testsAfter,
+                expected: data.testsExpected
+            }
+            setTests(dataTests);
             setCode(data.placeholder);
             setLoading(false);
         }
@@ -40,14 +52,21 @@ const Exercise = () => {
         return pathFinal;
     };
 
+    const testsPassed = () => {
+        const path = getCurrentPath();
+        setDoc(doc(db, "users", auth.currentUser.uid, "exercises", getCurrentPath()), {
+            done: true
+        });
+    };
+
     const onValueChange = (newValue) => {
-        console.log("yooo " + newValue);
         setCode(newValue);
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
-    }
+        setClicked(true);
+    };
 
     return (
         <div className="h-full">
@@ -58,19 +77,18 @@ const Exercise = () => {
                             <Placeholder codeParent={code} onValueChange={onValueChange}/>
                         </div>
                         <div className="m-4">
-                            <h1 className="text-center">Instructions</h1>
-                                <Instructions textParent={data.instructions}/>
-                            <h1 className="text-center mt-16">Tests</h1>
-                                <Tests/>
-                            <h1 className="text-center mt-16">Response</h1>
-                            <h2>{response ? response : "Empty"}</h2>
-                            <button className="mt-16" type="submit" onClick={onSubmit}>Submit</button>
-                            {!t1 ? null : <NavLink to="../2"><button type="submit">Next exercise!</button></NavLink>}
+                            <form type="submit">
+                                <h1 className="text-center">Instructions</h1>
+                                    <Instructions textParent={data.instructions}/>
+                                <h1 className="text-center mt-16">Response</h1>
+                                    <Tests data={tests} code={code} onSubmit={clicked} testsPassed={testsPassed}/>
+                                <button className="mt-16" onClick={onSubmit}>Submit</button> 
+                            </form>
+                       </div>
                         </div>
-                    </div>
-                    <div>
-                        <Comments/>
-                    </div>
+                        <div>
+                            <Comments/>
+                        </div>
                 </> : <h2>Loading..</h2>}
             </> : <h2>Loading..</h2>}
         </div>
