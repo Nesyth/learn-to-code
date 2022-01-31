@@ -71,11 +71,11 @@ const Create = () => {
     };
 
     return (
-        <div className="flex justify-center mt-10">
-            <div className="containerBig">
+        <div className="flex mt-10 justify-center">
+            <div className="container">
                 <h1>Create new exercise</h1>
-                <div className="flex justify-center">
-                    <form onSubmit={onSubmit} className="width-300">
+                <div className="w-full flex items-center border-t-2 m-2 p-4 justify-center text-center">
+                    <form onSubmit={onSubmit}>
                         <p>Name:</p>
                         <input value={name} onChange={onNameChange} required/>
                         <p>Description:</p>
