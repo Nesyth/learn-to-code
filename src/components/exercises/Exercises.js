@@ -59,7 +59,7 @@ const Exercises = () => {
                     ))}
                 </> : null}
                 <NavLink className="w-full flex" to="create">           
-                    <div className="w-full flex items-center border-t-2 ml-2 mr-2 p-2">
+                    <div className="w-full flex items-center border-t-2 ml-2 mr-2 pt-4 justify-center">
                         <h3 className="text-lg">Create new..</h3>
                     </div>
                 </NavLink>
