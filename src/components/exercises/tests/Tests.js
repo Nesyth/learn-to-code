@@ -1,5 +1,4 @@
-import react, { useState } from "react";
-import { FiCodesandbox } from "react-icons/fi";
+import react from "react";
 import Test from "./Test";
 
 const Tests = ({ data, code, onSubmit, testsPassed }) => {

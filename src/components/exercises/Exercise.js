@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useUserContext } from '../../context/UserContext.js';
-import { FiX, FiCheck } from 'react-icons/fi';
-import { NavLink } from 'react-router-dom';
 import { auth, db } from "../../firebase/firebase.js";
-import { updateDoc, doc, getDoc, setDoc } from "firebase/firestore"; 
+import { doc, getDoc, setDoc } from "firebase/firestore"; 
 import { useLocation } from 'react-router-dom';
 import Comments from './comments/Comments.js';
 import Placeholder from './Placeholder.js';

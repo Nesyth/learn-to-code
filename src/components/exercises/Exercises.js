@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
-import { onSnapshot, doc, query, collection, getDocs } from "firebase/firestore";
+import { onSnapshot, query, collection, getDocs } from "firebase/firestore";
 import { db, auth } from "../../firebase/firebase";
 
 const Exercises = () => {

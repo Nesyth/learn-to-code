@@ -11,8 +11,6 @@ import {
   signInWithPopup
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.js";
-import { setDoc, doc } from "firebase/firestore"; 
-import { db } from "../firebase/firebase.js";
 
 export const UserContext = createContext({});
 

@@ -1,7 +1,6 @@
 import React from "react";
 import { useUserContext } from "../context/UserContext.js";
 import { NavLink } from "react-router-dom";
-import { image } from "./Dashboard"
 
 const Navbar = () => {
     const { user, logoutUser } = useUserContext();
